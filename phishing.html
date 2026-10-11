@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSaathi | Phishing Detector</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .phishing-hero {
+            padding: 140px 20px 45px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #0a2f73, #0d6efd);
+        }
+
+        .phishing-hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .phishing-section {
+            min-height: 55vh;
+            padding: 50px 20px;
+            background: #f4f8ff;
+        }
+
+        .phishing-card {
+            max-width: 700px;
+            margin: auto;
+            padding: 35px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .phishing-card label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .url-input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .check-btn {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #0d6efd;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .check-btn:hover {
+            background: #0a2f73;
+        }
+
+        .check-btn:focus-visible,
+        .url-input:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 3px;
+        }
+
+        #url-result {
+            margin-top: 22px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        #url-result h3 {
+            margin-bottom: 10px;
+        }
+
+        #url-result li {
+            margin-bottom: 8px;
+        }
+
+        .result-caution {
+            color: #b45309;
+        }
+
+        .result-suspicious {
+            color: #c2410c;
+        }
+
+        .result-high {
+            color: #b91c1c;
+        }
+
+        .result-neutral {
+            color: #1d4ed8;
+        }
+
+        .warning {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #9a3412;
+        }
+
+        body.dark-mode .phishing-hero {
+            background: linear-gradient(135deg, #111827, #1e293b);
+        }
+
+        body.dark-mode .phishing-section {
+            background: #111827;
+        }
+
+        body.dark-mode .phishing-card {
+            background: #1f2937;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .url-input {
+            background: #111827;
+            color: #f9fafb;
+            border-color: #64748b;
+        }
+
+        body.dark-mode .warning {
+            color: #fdba74;
+        }
+
+        body.dark-mode .result-caution {
+            color: #fbbf24;
+        }
+
+        body.dark-mode .result-suspicious {
+            color: #fb923c;
+        }
+
+        body.dark-mode .result-high {
+            color: #fca5a5;
+        }
+
+        body.dark-mode .result-neutral {
+            color: #93c5fd;
+        }
+
+        @media (max-width: 600px) {
+            .phishing-hero h1 {
+                font-size: 32px;
+            }
+
+            .phishing-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🛡️ CyberSaathi</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="password.html">Password</a></li>
+            <li><a href="phishing.html">Phishing</a></li>
+            <li><a href="scam-alert.html">Scam Alert</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="emergency.html">Emergency</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
+    </nav>
+
+    <section class="phishing-hero">
+        <h1>🎣 Phishing URL Detector</h1>
+        <p>Check URLs for common suspicious patterns.</p>
+    </section>
+
+    <section class="phishing-section">
+        <div class="phishing-card">
+
+            <label for="url-input">Enter URL to check</label>
+
+            <input
+                type="text"
+                id="url-input"
+                class="url-input"
+                placeholder="Example: https://example.com"
+                autocomplete="off"
+                spellcheck="false"
+                aria-describedby="url-help"
+            >
+
+            <p id="url-help">
+                Enter a website address. You do not need to open the website.
+            </p>
+
+            <button id="check-url" class="check-btn" type="button">
+                Check URL
+            </button>
+
+            <div id="url-result" aria-live="polite" role="status">
+                Your URL check result will appear here.
+            </div>
+
+            <p class="warning">
+                ⚠️ This tool checks common warning signs only. It does not
+                connect to a live threat database and cannot guarantee safety.
+                Never enter passwords or personal details on suspicious sites.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Preserve the existing shared JavaScript file for dark mode and other features. -->
+    <script src="js/script.js"></script>
+
+    <script>
+        const urlInput = document.getElementById("url-input");
+        const checkUrlButton = document.getElementById("check-url");
+        const urlResult = document.getElementById("url-result");
+
+        // Add or update a warning and its risk points.
+        function flag(points, message, warnings) {
+            warnings.push(message);
+            return points;
+        }
+
+        function belongsToDomain(hostname, domain) {
+            return hostname === domain ||
+                hostname.endsWith("." + domain);
+        }
+
+        function showMessage(message, className = "") {
+            urlResult.replaceChildren();
+
+            const p = document.createElement("p");
+            p.textContent = message;
+
+            if (className) {
+                p.className = className;
+            }
+
+            urlResult.appendChild(p);
+        }
+
+        checkUrlButton.addEventListener("click", function () {
+            const enteredUrl = urlInput.value.trim();
+            urlResult.replaceChildren();
+
+            const warnings = [];
+            let score = 0;
+
+            if (!enteredUrl) {
+                showMessage("Please enter a URL first.");
+                return;
+            }
+
+            if (/\s/.test(enteredUrl)) {
+                showMessage("Invalid URL: spaces are not allowed.");
+                return;
+            }
+
+            // Add HTTPS if the user enters a domain without a protocol.
+            let url;
+
+            try {
+                const hasProtocol =
+                    /^[a-zA-Z][a-zA-Z\d+.-]*:/.test(enteredUrl);
+
+                url = new URL(
+                    hasProtocol ? enteredUrl : "https://" + enteredUrl
+                );
+            } catch (error) {
+                showMessage(
+                    "Invalid URL format. Please check the address."
+                );
+                return;
+            }
+
+            // Only web URLs are supported by this checker.
+            if (!["http:", "https:"].includes(url.protocol)) {
+                showMessage(
+                    "Unsupported protocol. Enter an HTTP or HTTPS URL."
+                );
+                return;
+            }
+
+            if (!url.hostname) {
+                showMessage("Invalid URL: hostname is missing.");
+                return;
+            }
+
+            const host = url.hostname.toLowerCase().replace(/\.$/, "");
+            const pathAndQuery =
+                (url.pathname + url.search).toLowerCase();
+            const labels = host.split(".");
+
+            // 1. HTTP without HTTPS.
+            if (url.protocol === "http:") {
+                score += flag(
+                    2,
+                    "The connection uses HTTP instead of HTTPS. This alone does not prove phishing.",
+                    warnings
+                );
+            }
+
+            // 2. Sensitive words in the path and query.
+            // A keyword alone does not establish that a URL is malicious.
+            const riskyWords = [
+                "otp", "kyc", "verify", "login", "password",
+                "bank", "secure", "update", "wallet", "refund",
+                "reward", "claim", "urgent", "blocked", "account",
+                "signin", "freegift"
+            ];
+
+            const foundWords = riskyWords.filter(word => {
+                const pattern = new RegExp(
+                    "(^|[^a-z])" + word + "([^a-z]|$)"
+                );
+                return pattern.test(pathAndQuery);
+            });
+
+            if (foundWords.length > 0) {
+                score += flag(
+                    1,
+                    "Sensitive keyword(s) found in the path/query: " +
+                    foundWords.join(", ") +
+                    ". Keywords alone do not prove phishing.",
+                    warnings
+                );
+            }
+
+            // 3. Known brand domain comparison.
+            // This is a small demonstration list, not a complete official-domain registry.
+            const officialDomains = {
+                SBI: ["sbi.co.in", "onlinesbi.sbi"],
+                Google: ["google.com"],
+                Microsoft: ["microsoft.com"],
+                Amazon: ["amazon.com"],
+                PayPal: ["paypal.com"],
+                Paytm: ["paytm.com"],
+                HDFC: ["hdfcbank.com"],
+                ICICI: ["icicibank.com"],
+                Facebook: ["facebook.com"],
+                Apple: ["apple.com"]
+            };
+
+            for (const [brand, domains] of Object.entries(officialDomains)) {
+                const brandKeyword = brand.toLowerCase();
+
+                // Check for brand names in the hostname.
+                if (!host.includes(brandKeyword)) {
+                    continue;
+                }
+
+                const matchesOfficialDomain = domains.some(domain =>
+                    belongsToDomain(host, domain)
+                );
+
+                if (!matchesOfficialDomain) {
+                    score += flag(
+                        3,
+                        "The hostname mentions " + brand +
+                        " but does not match this checker's configured domain list.",
+                        warnings
+                    );
+                }
+            }
+
+            // 4. Common lookalike spellings.
+            const lookalikes = [
+                ["paypa1", "PayPal"],
+                ["paypai", "PayPal"],
+                ["arnazon", "Amazon"],
+                ["amaz0n", "Amazon"],
+                ["g00gle", "Google"],
+                ["micr0soft", "Microsoft"],
+                ["faceb00k", "Facebook"]
+            ];
+
+            for (const [pattern, brand] of lookalikes) {
+                if (host.includes(pattern)) {
+                    score += flag(
+                        3,
+                        "Possible lookalike spelling of " + brand +
+                        " detected in the hostname.",
+                        warnings
+                    );
+                }
+            }
+
+            // 5. @ sign or credentials inside the URL authority.
+            // An @ in a query or page path is not automatically treated as credentials.
+            const authority = enteredUrl
+                .replace(/^[a-zA-Z][a-zA-Z\d+.-]*:\/\//, "")
+                .split(/[/?#]/)[0];
+
+            if (url.username || url.password || authority.includes("@")) {
+                score += flag(
+                    2,
+                    "The URL authority contains an @ sign or embedded credentials.",
+                    warnings
+                );
+            }
+
+            // 6. IPv4 address used as hostname.
+            if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host)) {
+                score += flag(
+                    2,
+                    "The hostname is an IPv4 address rather than a conventional domain name.",
+                    warnings
+                );
+            }
+
+            // 7. Common URL shorteners.
+            const shorteners = [
+                "bit.ly", "tinyurl.com", "t.co",
+                "is.gd", "cutt.ly", "shorturl.at"
+            ];
+
+            if (shorteners.some(domain => belongsToDomain(host, domain))) {
+                score += flag(
+                    2,
+                    "A URL shortener is being used, so the final destination is not obvious.",
+                    warnings
+                );
+            }
+
+            // 8. Encoded or unusual hostname patterns.
+            if (host.includes("xn--")) {
+                score += flag(
+                    2,
+                    "The domain contains an encoded international-character label. Inspect it carefully.",
+                    warnings
+                );
+            }
+
+            if (host.length > 45) {
+                score += flag(
+                    1,
+                    "The hostname is unusually long.",
+                    warnings
+                );
+            }
+
+            if (labels.length >= 5) {
+                score += flag(
+                    1,
+                    "The hostname has many subdomain labels.",
+                    warnings
+                );
+            }
+
+            if ((host.match(/-/g) || []).length >= 3) {
+                score += flag(
+                    1,
+                    "The hostname contains several hyphens.",
+                    warnings
+                );
+            }
+
+            if ((host.match(/\d/g) || []).length >= 5) {
+                score += flag(
+                    1,
+                    "The hostname contains many digits.",
+                    warnings
+                );
+            }
+
+            // 9. Non-standard port.
+            if (url.port && !["80", "443"].includes(url.port)) {
+                score += flag(
+                    1,
+                    "The URL uses a non-standard web port: " + url.port,
+                    warnings
+                );
+            }
+
+            // 10. Long URL or percent-encoded characters.
+            if (enteredUrl.length > 150) {
+                score += flag(
+                    1,
+                    "The complete URL is unusually long.",
+                    warnings
+                );
+            }
+
+            if (/%[0-9a-f]{2}/i.test(enteredUrl)) {
+                score += flag(
+                    1,
+                    "The URL contains percent-encoded characters. Inspect it carefully.",
+                    warnings
+                );
+            }
+
+            // 11. Redirect-style query parameters.
+            if (
+                /[?&](redirect|redirect_url|return|return_url|next|url)=/i
+                    .test(url.search)
+            ) {
+                score += flag(
+                    1,
+                    "The URL has a redirect-style parameter. Its destination should be checked.",
+                    warnings
+                );
+            }
+
+            // 12. Risk category.
+            // These thresholds are illustrative, not scientifically calibrated.
+            let level;
+            let headingText;
+            let resultClass;
+
+            if (score >= 5) {
+                level = "HIGH CAUTION";
+                headingText = "⚠️ High Caution: Multiple warning signs found";
+                resultClass = "result-high";
+            } else if (score >= 3) {
+                level = "SUSPICIOUS PATTERNS";
+                headingText = "⚠️ Suspicious patterns detected";
+                resultClass = "result-suspicious";
+            } else if (score >= 1) {
+                level = "CAUTION";
+                headingText = "⚠️ Caution: Verify this URL";
+                resultClass = "result-caution";
+            } else {
+                level = "NO OBVIOUS SIGNS";
+                headingText = "ℹ️ No obvious warning signs detected";
+                resultClass = "result-neutral";
+            }
+
+            const heading = document.createElement("h3");
+            heading.textContent = headingText;
+            heading.className = resultClass;
+            urlResult.appendChild(heading);
+
+            const domainInfo = document.createElement("p");
+            domainInfo.textContent = "Hostname: " + host;
+            urlResult.appendChild(domainInfo);
+
+            const scoreInfo = document.createElement("p");
+            scoreInfo.textContent = "Heuristic risk score: " + score;
+            urlResult.appendChild(scoreInfo);
+
+            if (warnings.length > 0) {
+                const list = document.createElement("ul");
+
+                warnings.forEach(message => {
+                    const item = document.createElement("li");
+                    item.textContent = message;
+                    list.appendChild(item);
+                });
+
+                urlResult.appendChild(list);
+            } else {
+                const noWarnings = document.createElement("p");
+                noWarnings.textContent =
+                    "No configured warning patterns were triggered.";
+                urlResult.appendChild(noWarnings);
+            }
+
+            const disclaimer = document.createElement("p");
+            disclaimer.textContent =
+                "Result: " + level + ". This is a heuristic estimate, not a " +
+                "verified security verdict. Legitimate websites can trigger " +
+                "warnings, and phishing websites can pass these checks. " +
+                "No live threat database is connected.";
+
+            urlResult.appendChild(disclaimer);
+        });
+
+        // Also allow pressing Enter to check the entered URL.
+        urlInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                checkUrlButton.click();
+            }
+        });
+    </script>
+
+</body>
+</html>

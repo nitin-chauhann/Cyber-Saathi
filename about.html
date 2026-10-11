@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | CyberSaathi</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .about-hero {
+            padding: 140px 20px 55px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #0f172a, #2563eb);
+        }
+
+        .about-hero h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .about-section {
+            padding: 40px 20px;
+            background: #f4f7fb;
+        }
+
+        .about-container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .about-card {
+            background: white;
+            padding: 25px;
+            margin: 22px 0;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .about-card h2 {
+            color: #2563eb;
+            margin-bottom: 14px;
+        }
+
+        .about-card p,
+        .about-card li {
+            line-height: 1.8;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 22px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            border-bottom: 4px solid #2563eb;
+        }
+
+        .feature-card h3 {
+            margin: 10px 0;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .tech-item {
+            padding: 10px 17px;
+            border-radius: 25px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-weight: bold;
+        }
+
+        .team-placeholder {
+            border: 2px dashed #93c5fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .about-disclaimer {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+        }
+
+        body.dark-mode .about-section {
+            background: #111827;
+        }
+
+        body.dark-mode .about-card,
+        body.dark-mode .feature-card {
+            background: #1f2937;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .about-card h2 {
+            color: #93c5fd;
+        }
+
+        body.dark-mode .tech-item {
+            background: #1e3a5f;
+            color: #dbeafe;
+        }
+
+        body.dark-mode .about-disclaimer {
+            background: #332515;
+            color: #ffedd5;
+        }
+
+        body.dark-mode .team-placeholder {
+            border-color: #60a5fa;
+        }
+
+        @media (max-width: 600px) {
+            .about-hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🛡️ CyberSaathi</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="password.html">Password</a></li>
+            <li><a href="phishing.html">Phishing</a></li>
+            <li><a href="scam-alert.html">Scam Alert</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="emergency.html">Emergency</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
+    </nav>
+
+    <header class="about-hero">
+        <h1>About CyberSaathi 🛡️</h1>
+        <p>Your digital companion for a safer online world.</p>
+    </header>
+
+    <main class="about-section">
+        <div class="about-container">
+
+            <section class="about-card">
+                <h2>📘 About the Project</h2>
+                <p>
+                    CyberSaathi is a web-based cybersecurity awareness project
+                    designed to help users understand common online threats and
+                    develop safer digital habits. It provides simple educational
+                    tools and guidance to make internet usage safer and more
+                    responsible.
+                </p>
+            </section>
+
+            <section class="about-card">
+                <h2>🎯 Project Objectives</h2>
+                <ul>
+                    <li>Spread awareness about cybersecurity and online safety.</li>
+                    <li>Help users identify common signs of suspicious URLs.</li>
+                    <li>Explain password strength and secure password practices.</li>
+                    <li>Educate users about online scams and phishing attacks.</li>
+                    <li>Test cybersecurity knowledge through an interactive quiz.</li>
+                    <li>Guide users toward official cybercrime reporting resources.</li>
+                </ul>
+            </section>
+
+            <section class="about-card">
+                <h2>⚙️ Technologies Used</h2>
+                <p>
+                    CyberSaathi uses front-end web technologies to provide an
+                    interactive and responsive user experience.
+                </p>
+
+                <div class="tech-list">
+                    <span class="tech-item">HTML5</span>
+                    <span class="tech-item">CSS3</span>
+                    <span class="tech-item">JavaScript</span>
+                    <span class="tech-item">VS Code</span>
+                </div>
+
+                <p style="margin-top: 18px;">
+                    <strong>HTML:</strong> Structures the web pages.<br>
+                    <strong>CSS:</strong> Controls the design, layout and responsive styling.<br>
+                    <strong>JavaScript:</strong> Adds interactivity, quiz scoring, URL checks,
+                    password feedback and theme switching.<br>
+                    <strong>VS Code:</strong> Used to write and manage the project code.
+                </p>
+            </section>
+
+            <section class="about-card">
+                <h2>✨ Main Features</h2>
+
+                <div class="about-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">🏠</div>
+                        <h3>Home Page</h3>
+                        <p>Introduces CyberSaathi and its cybersecurity awareness purpose.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Safety Tips</h3>
+                        <p>Shares practical tips for safer internet usage.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Password Checker</h3>
+                        <p>Checks password characteristics and provides strength feedback.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🔎</div>
+                        <h3>Phishing Detector</h3>
+                        <p>Checks URLs for suspicious patterns using heuristic rules.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Cyber Quiz</h3>
+                        <p>Tests users' knowledge with questions and explanations.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🚨</div>
+                        <h3>Scam Alerts</h3>
+                        <p>Explains common scams, warning signs and preventive actions.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🆘</div>
+                        <h3>Emergency Help</h3>
+                        <p>Provides guidance and links to official reporting resources.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🌙</div>
+                        <h3>Dark Mode</h3>
+                        <p>Allows users to switch the website's appearance where supported.</p>
+                    </article>
+                </div>
+            </section>
+
+        
+<section class="about-card">
+    <h2>👨‍💻 Meet Our Team</h2>
+
+    <p>
+        We are the Mini Project Team behind CyberSaathi,
+        a cybersecurity awareness website developed to promote safe
+        and responsible internet usage.
+    </p>
+
+    <div class="about-grid">
+
+        <article class="feature-card" style="border-bottom-color: #f59e0b;">
+            <div class="feature-icon">👩‍💻</div>
+            <h3>Nitin Chauhan</h3>
+            <p><strong>Team Leader</strong></p>
+            <p>Coordinates the team and guides project development.</p>
+        </article>
+
+        <article class="feature-card">
+            <div class="feature-icon">👩‍💻</div>
+            <h3>Nishtha Bhardwaj</h3>
+            <p><strong>Team Member</strong></p>
+            <p>CyberSaathi Mini Project Team</p>
+        </article>
+
+        <article class="feature-card">
+            <div class="feature-icon">👨‍💻</div>
+            <h3>Nishan Kumar Singh</h3>
+            <p><strong>Team Member</strong></p>
+            <p>CyberSaathi Mini Project Team</p>
+        </article>
+
+        <article class="feature-card">
+            <div class="feature-icon">👩‍💻</div>
+            <h3>Nimisha Srivastava</h3>
+            <p><strong>Team Member</strong></p>
+            <p>CyberSaathi Mini Project Team</p>
+        </article>
+
+    </div>
+
+    <div class="team-placeholder">
+        <h3>🎓 Academic Details</h3>
+        <p><strong>Project Name:</strong> CyberSaathi</p>
+        <p><strong>Project Type:</strong> Mini Project Team</p>
+        <p>
+            <strong>College:</strong>
+            GL Bajaj Institute of Technology &amp; Management,
+            Greater Noida
+        </p>
+        <p><strong>Academic Year:</strong> 2026–2027</p>
+    </div>
+</section>
+
+
+            <section class="about-card about-disclaimer">
+                <h2>⚠️ Project Limitations</h2>
+                <p>
+                    CyberSaathi is an educational awareness website, not a complete
+                    cybersecurity protection system. Its phishing checker uses
+                    heuristic rules and does not connect to a live threat database.
+                    Therefore, a low-risk result does not guarantee that a URL is safe,
+                    and a suspicious result does not prove that a URL is malicious.
+                </p>
+                <p>
+                    The website does not directly report incidents to authorities,
+                    block cyberattacks or guarantee password security.
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

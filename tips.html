@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Tips | CyberSaathi</title>
+<link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tips-hero {
+            padding: 140px 20px 50px;
+            text-align: center;
+            background: linear-gradient(135deg, #0a2f73, #0d6efd);
+            color: white;
+        }
+
+        .tips-hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .tips-hero p {
+            font-size: 18px;
+        }
+
+        .tips-container {
+            padding: 50px 8%;
+            background: #f4f8ff;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .tip-item {
+            background: white;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tip-item:hover {
+            transform: translateY(-6px);
+        }
+
+        .tip-item h2 {
+            color: #0b3d91;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .tip-item p {
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        body.dark-mode .tips-hero {
+            background: linear-gradient(135deg, #111827, #1e293b);
+        }
+
+        body.dark-mode .tips-container {
+            background: #111827;
+        }
+
+        body.dark-mode .tip-item {
+            background: #1f2937;
+        }
+
+        body.dark-mode .tip-item h2,
+        body.dark-mode .tip-item p {
+            color: #f9fafb;
+        }
+
+        .tips-footer {
+            padding: 20px;
+            text-align: center;
+            background: #0a2f73;
+            color: white;
+        }
+
+        body.dark-mode .tips-footer {
+            background: #0b1220;
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            nav ul li {
+                margin-left: 5px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            #theme-toggle {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🛡️ CyberSaathi</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="password.html">Password</a></li>
+            <li><a href="phishing.html">Phishing</a></li>
+            <li><a href="scam-alert.html">Scam Alert</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="emergency.html">Emergency</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
+    </nav>
+
+    <header class="tips-hero">
+        <h1>🛡️ Cyber Safety Tips</h1>
+        <p>Small steps, stronger security. Stay safe in the digital world!</p>
+    </header>
+
+    <main class="tips-container">
+        <div class="tips-grid">
+
+            <article class="tip-item">
+                <h2>🔐 1. Use Strong Passwords</h2>
+                <p>Create long, unique passwords for different accounts. A password manager can help you store them securely.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>📱 2. Never Share OTPs</h2>
+                <p>Never share your OTP, PIN or verification code with anyone, even if they claim to be from your bank.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>🔗 3. Check Unknown Links</h2>
+                <p>Verify the website address before clicking links. Be careful with unexpected messages, prizes and urgent offers.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>🛡️ 4. Enable Two-Factor Authentication</h2>
+                <p>Turn on two-factor authentication wherever available to add another layer of account protection.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>📶 5. Use Secure Networks</h2>
+                <p>Avoid sensitive transactions on untrusted public Wi-Fi. Use a trusted network and keep your device secure.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>🔄 6. Update Your Devices</h2>
+                <p>Install software and security updates regularly to fix vulnerabilities and protect your devices.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>🎣 7. Identify Phishing</h2>
+                <p>Look for suspicious sender addresses, unexpected attachments and messages pressuring you to act immediately.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>💳 8. Verify Before Paying</h2>
+                <p>Check payment requests carefully. Never enter your UPI PIN to receive money or approve an unknown collect request.</p>
+            </article>
+
+            <article class="tip-item">
+                <h2>🔒 9. Protect Personal Data</h2>
+                <p>Think before sharing your address, phone number, identity documents or live location online.</p>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="tips-footer">
+        <p>Stay Alert. Stay Secure. Stay CyberSaathi! 🛡️</p>
+    </footer>
+<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSaathi | Cyber Safety Quiz</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .quiz-hero {
+            padding: 140px 20px 45px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #0a2f73, #0d6efd);
+        }
+
+        .quiz-hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .quiz-section {
+            min-height: 55vh;
+            padding: 45px 20px;
+            background: #f4f8ff;
+        }
+
+        .quiz-card {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .quiz-progress {
+            height: 8px;
+            background: #dbeafe;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 15px 0 25px;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            width: 0;
+            background: #0d6efd;
+            transition: width 0.3s ease;
+        }
+
+        .question {
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            margin: 9px 0;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option:hover {
+            background: #eff6ff;
+        }
+
+        .option input {
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .option:has(input:checked) {
+            border-color: #0d6efd;
+            background: #eff6ff;
+        }
+
+        .quiz-btn {
+            padding: 12px 22px;
+            margin: 20px 8px 0 0;
+            border: none;
+            border-radius: 8px;
+            background: #0d6efd;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .quiz-btn:hover {
+            background: #0a2f73;
+        }
+
+        .secondary-btn {
+            background: #475569;
+        }
+
+        .question-result {
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .correct-text {
+            color: #15803d;
+        }
+
+        .wrong-text {
+            color: #b91c1c;
+        }
+
+        .result-panel {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            background: #eff6ff;
+            line-height: 1.8;
+        }
+
+        .result-panel h2 {
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        body.dark-mode .quiz-hero {
+            background: linear-gradient(135deg, #111827, #1e293b);
+        }
+
+        body.dark-mode .quiz-section {
+            background: #111827;
+        }
+
+        body.dark-mode .quiz-card {
+            background: #1f2937;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .question {
+            border-color: #475569;
+        }
+
+        body.dark-mode .option {
+            border-color: #64748b;
+        }
+
+        body.dark-mode .option:hover,
+        body.dark-mode .option:has(input:checked) {
+            background: #334155;
+        }
+
+        body.dark-mode .result-panel {
+            background: #26364b;
+        }
+
+        body.dark-mode .correct-text {
+            color: #86efac;
+        }
+
+        body.dark-mode .wrong-text {
+            color: #fca5a5;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-hero h1 {
+                font-size: 32px;
+            }
+
+            .quiz-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🛡️ CyberSaathi</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="password.html">Password</a></li>
+            <li><a href="phishing.html">Phishing</a></li>
+            <li><a href="scam-alert.html">Scam Alert</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="emergency.html">Emergency</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
+    </nav>
+
+    <section class="quiz-hero">
+        <h1>🧠 Cyber Safety Quiz</h1>
+        <p>Test your knowledge and become cyber aware!</p>
+    </section>
+
+    <section class="quiz-section">
+        <div class="quiz-card">
+
+            <div id="quiz-area">
+                <p id="progress-text">Question 1 of 10</p>
+
+                <div class="quiz-progress" aria-hidden="true">
+                    <div id="progress-bar" class="quiz-progress-bar"></div>
+                </div>
+
+                <form id="quiz-form">
+                    <div id="questions-container"></div>
+
+                    <button type="submit" class="quiz-btn">
+                        Submit Quiz
+                    </button>
+                </form>
+            </div>
+
+            <div id="result-panel" class="result-panel hidden"
+                 aria-live="polite" role="status">
+            </div>
+
+            <button id="restart-btn" type="button"
+                    class="quiz-btn secondary-btn hidden">
+                🔄 Restart Quiz
+            </button>
+
+        </div>
+    </section>
+
+    <!-- Keep the existing shared JavaScript file for dark mode and other features. -->
+    <script src="js/script.js"></script>
+
+    <script>
+        const questions = [
+            {
+                question: "1. What should you do if someone asks for your OTP over a phone call?",
+                options: [
+                    "Share it if they know your name",
+                    "Never share it with anyone",
+                    "Send it by text message",
+                    "Share it if they claim to be from a bank"
+                ],
+                answer: 1,
+                explanation: "An OTP is confidential. Never share it with callers or messages claiming to be official."
+            },
+            {
+                question: "2. Which of these is the strongest password practice?",
+                options: [
+                    "Use your name and birth year",
+                    "Use the same password everywhere",
+                    "Use a long, unique password or passphrase",
+                    "Use 123456 because it is easy to remember"
+                ],
+                answer: 2,
+                explanation: "Long, unique passwords are harder to guess. A password manager can help you manage them."
+            },
+            {
+                question: "3. What is phishing?",
+                options: [
+                    "A method of updating software",
+                    "A fraudulent attempt to steal information by impersonation",
+                    "A way to improve internet speed",
+                    "A type of computer backup"
+                ],
+                answer: 1,
+                explanation: "Phishing uses deceptive messages or websites to trick people into revealing information or taking unsafe actions."
+            },
+            {
+                question: "4. Does HTTPS alone guarantee that a website is trustworthy?",
+                options: [
+                    "Yes, every HTTPS website is safe",
+                    "Yes, if the website has a lock icon",
+                    "No, a phishing website can also use HTTPS",
+                    "Yes, but only on mobile phones"
+                ],
+                answer: 2,
+                explanation: "HTTPS encrypts the connection, but it does not prove that the website owner is legitimate."
+            },
+            {
+                question: "5. What is Two-Factor Authentication (2FA)?",
+                options: [
+                    "Using two usernames",
+                    "Using an additional verification factor beyond the password",
+                    "Changing a password twice a day",
+                    "Logging in from two browsers"
+                ],
+                answer: 1,
+                explanation: "2FA adds another verification step. Prefer a passkey or authenticator where available."
+            },
+            {
+                question: "6. You receive an unexpected link claiming you won a prize. What should you do?",
+                options: [
+                    "Open it immediately",
+                    "Forward it to your contacts",
+                    "Enter your bank details to claim the prize",
+                    "Verify the claim through an official channel first"
+                ],
+                answer: 3,
+                explanation: "Unexpected prize messages can be scams. Verify independently instead of trusting the message link."
+            },
+            {
+                question: "7. What is a safe practice when using public Wi-Fi?",
+                options: [
+                    "Turn off device security",
+                    "Avoid sensitive transactions on untrusted networks when possible",
+                    "Share files with every nearby device",
+                    "Ignore all browser security warnings"
+                ],
+                answer: 1,
+                explanation: "Use trusted networks when possible, keep HTTPS enabled, and avoid ignoring security warnings."
+            },
+            {
+                question: "8. What should you do with an unexpected email attachment?",
+                options: [
+                    "Open it because the sender looks familiar",
+                    "Download it on every device",
+                    "Verify the sender and context before opening it",
+                    "Disable antivirus before opening it"
+                ],
+                answer: 2,
+                explanation: "Sender names can be spoofed or accounts compromised. Verify unexpected attachments before opening."
+            },
+            {
+                question: "9. What is the safest way to install an app?",
+                options: [
+                    "Download it from a trusted official store or source",
+                    "Install any file shared in a random group",
+                    "Disable all security settings first",
+                    "Choose links from unexpected pop-ups"
+                ],
+                answer: 0,
+                explanation: "Trusted official sources reduce risk. Still review permissions and verify the publisher."
+            },
+            {
+                question: "10. If you suspect an online banking scam, what should you do?",
+                options: [
+                    "Send the caller your PIN to confirm your identity",
+                    "Keep communicating with the suspicious caller",
+                    "Ignore any unauthorized transaction",
+                    "Contact your bank using its official contact details"
+                ],
+                answer: 3,
+                explanation: "Contact your bank through a verified channel and report unauthorized activity promptly."
+            }
+        ];
+
+        const quizForm = document.getElementById("quiz-form");
+        const questionsContainer = document.getElementById("questions-container");
+        const progressText = document.getElementById("progress-text");
+        const progressBar = document.getElementById("progress-bar");
+        const quizArea = document.getElementById("quiz-area");
+        const resultPanel = document.getElementById("result-panel");
+        const restartButton = document.getElementById("restart-btn");
+
+        // Build all questions and options.
+        function renderQuiz() {
+            questionsContainer.replaceChildren();
+
+            questions.forEach((item, questionIndex) => {
+                const questionBlock = document.createElement("div");
+                questionBlock.className = "question";
+
+                const heading = document.createElement("h3");
+                heading.textContent = item.question;
+                questionBlock.appendChild(heading);
+
+                item.options.forEach((option, optionIndex) => {
+                    const label = document.createElement("label");
+                    label.className = "option";
+
+                    const radio = document.createElement("input");
+                    radio.type = "radio";
+                    radio.name = "question-" + questionIndex;
+                    radio.value = optionIndex;
+                    radio.required = true;
+
+                    const optionText = document.createElement("span");
+                    optionText.textContent = option;
+
+                    label.appendChild(radio);
+                    label.appendChild(optionText);
+                    questionBlock.appendChild(label);
+                });
+
+                const feedback = document.createElement("p");
+                feedback.className = "question-result";
+                feedback.id = "feedback-" + questionIndex;
+                feedback.hidden = true;
+                questionBlock.appendChild(feedback);
+
+                questionsContainer.appendChild(questionBlock);
+            });
+
+            progressText.textContent = "10 questions • 1 point each";
+            progressBar.style.width = "0%";
+        }
+
+        // Update progress based on how many questions have been answered.
+        quizForm.addEventListener("change", function () {
+            const answered = questions.filter((item, index) =>
+                quizForm.querySelector(
+                    'input[name="question-' + index + '"]:checked'
+                )
+            ).length;
+
+            progressText.textContent =
+                "Answered: " + answered + " of " + questions.length;
+
+            progressBar.style.width =
+                (answered / questions.length * 100) + "%";
+        });
+
+        quizForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Require every question to have an answer.
+            const unanswered = questions.findIndex((item, index) =>
+                !quizForm.querySelector(
+                    'input[name="question-' + index + '"]:checked'
+                )
+            );
+
+            if (unanswered !== -1) {
+                const firstQuestion = questionsContainer.children[unanswered];
+                const missingAnswer = firstQuestion.querySelector("input");
+                missingAnswer.focus();
+
+                progressText.textContent =
+                    "Please answer question " + (unanswered + 1) + " before submitting.";
+                return;
+            }
+
+            let score = 0;
+
+            questions.forEach((item, index) => {
+                const selected = quizForm.querySelector(
+                    'input[name="question-' + index + '"]:checked'
+                );
+
+                const selectedAnswer = Number(selected.value);
+                const isCorrect = selectedAnswer === item.answer;
+                const feedback = document.getElementById("feedback-" + index);
+
+                if (isCorrect) {
+                    score++;
+                    feedback.textContent =
+                        "✓ Correct! " + item.explanation;
+                    feedback.className = "question-result correct-text";
+                } else {
+                    feedback.textContent =
+                        "✗ Correct answer: " + item.options[item.answer] +
+                        ". " + item.explanation;
+                    feedback.className = "question-result wrong-text";
+                }
+
+                feedback.hidden = false;
+
+                // Prevent answer changes after submitting.
+                const radios = quizForm.querySelectorAll(
+                    'input[name="question-' + index + '"]'
+                );
+
+                radios.forEach(radio => {
+                    radio.disabled = true;
+                });
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+
+            let message;
+
+            if (score >= 9) {
+                message = "Excellent! You have strong cyber safety awareness.";
+            } else if (score >= 7) {
+                message = "Good job! Review the explanations to improve further.";
+            } else if (score >= 5) {
+                message = "Nice effort! Keep learning safe online practices.";
+            } else {
+                message = "Keep practising! Review CyberSaathi's safety tips and try again.";
+            }
+
+            resultPanel.replaceChildren();
+
+            const title = document.createElement("h2");
+            title.textContent = "🎉 Quiz Completed!";
+            resultPanel.appendChild(title);
+
+            const scoreText = document.createElement("p");
+            scoreText.textContent =
+                "Your Score: " + score + " / " + questions.length;
+            resultPanel.appendChild(scoreText);
+
+            const percentageText = document.createElement("p");
+            percentageText.textContent =
+                "Percentage: " + percentage + "%";
+            resultPanel.appendChild(percentageText);
+
+            const messageText = document.createElement("p");
+            messageText.textContent = message;
+            resultPanel.appendChild(messageText);
+
+            const note = document.createElement("p");
+            note.textContent =
+                "Review the feedback under each question to learn from your answers.";
+            resultPanel.appendChild(note);
+
+            resultPanel.classList.remove("hidden");
+            restartButton.classList.remove("hidden");
+
+            progressText.textContent = "Quiz completed!";
+            progressBar.style.width = "100%";
+
+            quizForm.querySelector('button[type="submit"]').disabled = true;
+
+            resultPanel.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+
+        restartButton.addEventListener("click", function () {
+            quizForm.reset();
+
+            // Rebuild questions to remove old feedback and unlock options.
+            renderQuiz();
+
+            quizForm.querySelector('button[type="submit"]').disabled = false;
+            resultPanel.replaceChildren();
+            resultPanel.classList.add("hidden");
+            restartButton.classList.add("hidden");
+
+            quizArea.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+
+        renderQuiz();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f8ff;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 50px;
+
+    background:rgba(8,25,70,0.45);
+    backdrop-filter:blur(12px);
+
+    z-index:1000;
+
+    transition:.3s;
+}
+
+.logo{
+
+color:white;
+
+font-size:32px;
+
+font-weight:bold;
+
+letter-spacing:1px;
+
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:20px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+}
+nav ul li a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+    color:#00e5ff;
+
+    text-shadow:0 0 10px #00e5ff;
+
+}
+
+.hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px 10%;
+    background: linear-gradient(135deg,#0a2f73,#0d6efd);
+    color: white;
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-text h1{
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.hero-text h2{
+    font-size:36px;
+    margin-bottom:20px;
+}
+
+.hero-text p{
+    font-size:20px;
+    line-height:1.7;
+    max-width:600px;
+}
+
+.hero-image{
+    flex:1;
+    text-align:center;
+}
+
+.hero-image img{
+    width:450px;
+    max-width:100%;
+}
+
+.hero-buttons{
+    margin-top:30px;
+}
+
+.btn{
+    padding:14px 32px;
+    border-radius:30px;
+    background:#00e5ff;
+    color:#000;
+    text-decoration:none;
+    font-weight:bold;
+    margin-right:15px;
+}
+
+.btn-outline{
+    background:white;
+}
+.hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 10%;
+    gap: 50px;
+}
+
+.hero-content{
+    flex: 1;
+}
+
+.hero-image{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img{
+    width: 100%;
+    max-width: 450px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform: translateY(0);}
+    50%{transform: translateY(-10px);}
+    100%{transform: translateY(0);}
+}
+
+/* Live Security Tip */
+
+.tip-section{
+    padding:60px 20px;
+    background:#f5f8ff;
+}
+
+.tip-card{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+.tip-card h2{
+    color:#0b3d91;
+    margin-bottom:15px;
+}
+
+.tip-card p{
+    font-size:20px;
+}
+
+
+/* Feature Cards */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    padding:60px;
+    background:#eef5ff;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h3{
+    color:#0b3d91;
+    margin-bottom:15px;
+}
+
+.card p{
+    line-height:28px;
+}
+
+
+/* ===== CyberSaathi Dark Mode ===== */
+
+body.dark-mode {
+    background: #111827;
+    color: #f9fafb;
+}
+
+/* Security Tip section */
+body.dark-mode .tip-section {
+    background: #111827;
+}
+
+body.dark-mode .tip-card {
+    background: #1f2937;
+    color: #f9fafb;
+}
+
+body.dark-mode .tip-card h2,
+body.dark-mode .tip-card p {
+    color: #f9fafb;
+}
+
+/* Features section */
+body.dark-mode .features {
+    background: #111827;
+}
+
+body.dark-mode .card {
+    background: #1f2937;
+    color: #f9fafb;
+}
+
+body.dark-mode .card h3,
+body.dark-mode .card p {
+    color: #f9fafb;
+}
+
+/* Navigation */
+body.dark-mode nav {
+    background: rgba(17, 24, 39, 0.95);
+}
+
+/* Theme button */
+#theme-toggle {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+}
+
+/* Dark Mode - Hero Section */
+
+body.dark-mode .hero {
+    background: linear-gradient(135deg, #111827, #1e293b);
+    color: #f9fafb;
+}
+
+body.dark-mode .hero h1,
+body.dark-mode .hero h2,
+body.dark-mode .hero p {
+    color: #f9fafb;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+#features {
+    scroll-margin-top: 90px;
+}

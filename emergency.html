@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Help Centre | CyberSaathi</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .emergency-hero {
+            padding: 140px 20px 50px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #7f1d1d, #dc2626);
+        }
+
+        .emergency-hero h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .emergency-section {
+            padding: 40px 20px;
+            background: #f4f7fb;
+        }
+
+        .emergency-container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            margin: 25px 0;
+        }
+
+        .emergency-card {
+            padding: 24px;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #dc2626;
+        }
+
+        .emergency-icon {
+            font-size: 34px;
+        }
+
+        .emergency-card h2 {
+            font-size: 21px;
+            margin: 12px 0;
+        }
+
+        .emergency-card p {
+            line-height: 1.7;
+        }
+
+        .emergency-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #b91c1c;
+            font-weight: bold;
+        }
+
+        .steps-box {
+            padding: 25px;
+            margin-top: 30px;
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 12px;
+        }
+
+        .steps-box li {
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        .notice-box {
+            padding: 22px;
+            margin-top: 25px;
+            border-radius: 12px;
+            background: #dbeafe;
+            line-height: 1.7;
+        }
+
+        .checklist {
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .checklist label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 14px 0;
+            cursor: pointer;
+        }
+
+        .checklist input {
+            margin-top: 5px;
+        }
+
+        .checklist button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 7px;
+            background: #0d6efd;
+            color: white;
+            cursor: pointer;
+        }
+
+        #checklist-status {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        body.dark-mode .emergency-hero {
+            background: linear-gradient(135deg, #450a0a, #7f1d1d);
+        }
+
+        body.dark-mode .emergency-section {
+            background: #111827;
+        }
+
+        body.dark-mode .emergency-card,
+        body.dark-mode .checklist {
+            background: #1f2937;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .emergency-link {
+            color: #fca5a5;
+        }
+
+        body.dark-mode .steps-box {
+            background: #332515;
+            color: #ffedd5;
+        }
+
+        body.dark-mode .notice-box {
+            background: #1e3a5f;
+            color: #dbeafe;
+        }
+
+        @media (max-width: 600px) {
+            .emergency-hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🛡️ CyberSaathi</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tips.html">Tips</a></li>
+            <li><a href="password.html">Password</a></li>
+            <li><a href="phishing.html">Phishing</a></li>
+            <li><a href="scam-alert.html">Scam Alert</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="emergency.html">Emergency</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
+    </nav>
+
+    <header class="emergency-hero">
+        <h1>🚨 Emergency Help Centre</h1>
+        <p>Stay calm. Act quickly. Protect your accounts and report cybercrime.</p>
+    </header>
+
+    <main class="emergency-section">
+        <div class="emergency-container">
+
+            <h2>Need Help With Cyber Fraud?</h2>
+            <p>
+                If you suspect online fraud, use verified official channels.
+                Do not trust phone numbers or links sent by an unknown caller.
+            </p>
+
+            <div class="emergency-grid">
+
+                <article class="emergency-card">
+                    <div class="emergency-icon">📞</div>
+                    <h2>Cyber Financial Fraud</h2>
+                    <p>
+                        If money has been lost in an online financial fraud in India,
+                        call the national cyber fraud helpline as soon as possible.
+                    </p>
+                    <p><strong>Helpline: 1930</strong></p>
+                    <a class="emergency-link"
+                       href="https://cybercrime.gov.in/"
+                       target="_blank" rel="noopener noreferrer">
+                        Official Cyber Crime Portal ↗
+                    </a>
+                </article>
+
+                <article class="emergency-card">
+                    <div class="emergency-icon">🌐</div>
+                    <h2>Report Cybercrime</h2>
+                    <p>
+                        Use the Government of India's National Cyber Crime Reporting
+                        Portal to submit a report and follow its instructions.
+                    </p>
+                    <a class="emergency-link"
+                       href="https://cybercrime.gov.in/"
+                       target="_blank" rel="noopener noreferrer">
+                        Open Reporting Portal ↗
+                    </a>
+                </article>
+
+                <article class="emergency-card">
+                    <div class="emergency-icon">🏦</div>
+                    <h2>Bank or UPI Fraud</h2>
+                    <p>
+                        Contact your bank or payment provider through its official
+                        app or website. Ask them to secure the affected account
+                        and review unauthorised transactions.
+                    </p>
+                    <p><strong>Act immediately.</strong></p>
+                </article>
+
+                <article class="emergency-card">
+                    <div class="emergency-icon">🚓</div>
+                    <h2>Immediate Danger</h2>
+                    <p>
+                        If someone is threatening you or there is an immediate
+                        physical safety emergency in India, contact the appropriate
+                        emergency service.
+                    </p>
+                    <p><strong>India emergency number: 112</strong></p>
+                    <a class="emergency-link"
+                       href="https://112.gov.in/"
+                       target="_blank" rel="noopener noreferrer">
+                        Official ERSS Website ↗
+                    </a>
+                </article>
+
+            </div>
+
+            <section class="steps-box">
+                <h2>⚠️ What to Do After an Online Scam</h2>
+                <ol>
+                    <li><strong>Stop:</strong> Stop sending money and stop communicating with the suspected scammer.</li>
+                    <li><strong>Contact your bank:</strong> Report unauthorised transactions using official contact details.</li>
+                    <li><strong>Report quickly:</strong> For financial cyber fraud in India, call 1930 and follow the reporting instructions.</li>
+                    <li><strong>Save evidence:</strong> Keep transaction IDs, screenshots, messages, phone numbers and relevant dates.</li>
+                    <li><strong>Secure accounts:</strong> From a trusted device, change compromised passwords and enable stronger authentication.</li>
+                    <li><strong>Check your devices:</strong> If you installed a suspicious app or granted remote access, disconnect it and get help securing your device.</li>
+                </ol>
+            </section>
+
+            <section class="checklist">
+                <h2>✅ Emergency Action Checklist</h2>
+                <p>Tick each step as you complete it. This checklist stays on this page only.</p>
+
+                <label>
+                    <input type="checkbox" class="action-check">
+                    I have stopped communication with the suspected scammer.
+                </label>
+
+                <label>
+                    <input type="checkbox" class="action-check">
+                    I have contacted my bank or payment provider if necessary.
+                </label>
+
+                <label>
+                    <input type="checkbox" class="action-check">
+                    I have saved transaction details and other evidence.
+                </label>
+
+                <label>
+                    <input type="checkbox" class="action-check">
+                    I have reported the incident through the appropriate official channel.
+                </label>
+
+                <label>
+                    <input type="checkbox" class="action-check">
+                    I have secured affected accounts and devices.
+                </label>
+
+                <button type="button" id="checklist-button">Check Progress</button>
+                <p id="checklist-status" aria-live="polite"></p>
+            </section>
+
+            <section class="notice-box">
+                <h2>🔒 Important Safety Reminder</h2>
+                <p>
+                    CyberSaathi is an educational project. It does not directly
+                    contact police, banks or cybercrime authorities and cannot
+                    block a transaction for you. Official websites and helpline
+                    availability may change, so verify details using trusted
+                    government or service-provider sources.
+                </p>
+                <p>
+                    Never share your OTP, UPI PIN, banking password or remote-access
+                    code with someone claiming to help you.
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        const checklistButton = document.getElementById("checklist-button");
+        const checklistItems = document.querySelectorAll(".action-check");
+        const checklistStatus = document.getElementById("checklist-status");
+
+        checklistButton.addEventListener("click", function () {
+            const completed = document.querySelectorAll(
+                ".action-check:checked"
+            ).length;
+
+            const total = checklistItems.length;
+
+            if (completed === total) {
+                checklistStatus.textContent =
+                    "All checklist items marked complete. Stay alert and keep your evidence safe.";
+            } else {
+                checklistStatus.textContent =
+                    completed + " of " + total +
+                    " steps marked complete. Continue with the remaining steps when applicable.";
+            }
+        });
+    </script>
+
+</body>
+</html>
